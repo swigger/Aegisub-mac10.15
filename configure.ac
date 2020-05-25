@@ -227,7 +227,7 @@ AX_BOOST_SYSTEM
 AX_BOOST_THREAD
 
 cppflags_bak="$CPPFLAGS"
-CPPFLAGS="$CPPFLAGS $BOOST_CPPFLAGS"
+CPPFLAGS="$CPPFLAGS $BOOST_CPPFLAGS $ICU_UC_CFLAGS"
 AC_CHECK_HEADERS([boost/spirit/home/phoenix/version.hpp])
 CPPFLAGS=$cppflags_bak
 
@@ -243,7 +243,7 @@ PKG_CHECK_MODULES(ICU_I18N, icu-i18n >= icu_required_version)
 ## boost
 ########
 AS_IF([test x$enable_sanity_checks != xno], [
-  AC_AGI_COMPILE([boost ICU support], [boost_icu], [$BOOST_CPPFLAGS],
+  AC_AGI_COMPILE([boost ICU support], [boost_icu], [$BOOST_CPPFLAGS $ICU_UC_CFLAGS],
                  [$BOOST_LDFLAGS $BOOST_REGEX_LIB $ICU_UC_LIBS $ICU_I18N_LIBS],[
   #include <boost/regex/icu.hpp>
   int main() {
